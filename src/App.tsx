@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Flag.css';
-import { click } from '@testing-library/user-event/dist/click';
 
-function Flag() {
+const Flag: React.FC = () => {
+  const [message, setMessage] = useState<string>('');
+
+  const handleClick = (colorName: string) => {
+    setMessage(`Color: ${colorName}, Ecuador!`);
+  };
+
   return (
-      <div className="stripe yellow">
-      <div className="stripe blue">
-      <div className="stripe red"></div>
+    <div>
+      <div className="stripe yellow" onClick={() => handleClick('Yellow')}>
+        <div className="stripe blue" onClick={() => handleClick('Blue')}>
+          <div className="stripe red" onClick={() => handleClick('Red')}></div>
+        </div>
       </div>
-      </div>
+      <div>{message}</div>
+    </div>
   );
 }
-export default Flag;
 
+export default Flag;
